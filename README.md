@@ -66,6 +66,28 @@ SELECT drug,
 FROM pharmacy_sales
 ORDER BY total_profit DESC
 LIMIT 3
-10. INTERMEDIA SQL
-  * SQL Select Practice Exercise
-     SELECT
+10. Lección 201 - INTERMEDIA SQL
+11. Lección 202 - SUM, AVG, ACOUNT
+   * SQL Select Practice Exercise, pharmacy_sales
+
+20. Lección 211 - SQL JOINS
+    * SQL Selecte Practice Exercise
+SELECT * FROM trades 
+JOIN users 
+ON trades.user_id = users.user_id;
+
+* Assume you're given the tables containing info about Robinhood users, and the stock trades they placed. Use a JOIN to output all the information from the trades table joined to the users table.
+    * Practice Problem Cities With Completed Trades
+    * This is the same question as problem #2 in the SQL Chapter of Ace the Data Science Interview!
+    Assume you're given the tables containing completed trade orders and user details in a Robinhood trading system.
+    Write a query to retrieve the top three cities that have the highest number of completed trade orders listed in descending order. Output the city name and the corresponding number of completed trade orders.
+SELECT 
+  users.city, 
+  COUNT(trades.order_id) AS total_orders 
+FROM trades 
+INNER JOIN users 
+  ON trades.user_id = users.user_id 
+WHERE trades.status = 'Completed' 
+GROUP BY users.city 
+ORDER BY total_orders DESC
+LIMIT 3;
