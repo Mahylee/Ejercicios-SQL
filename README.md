@@ -68,8 +68,28 @@ ORDER BY total_profit DESC
 LIMIT 3
 10. Lección 201 - INTERMEDIA SQL
 11. Lección 202 - SUM, AVG, ACOUNT
-   * SQL Select Practice Exercise, pharmacy_sales
-
+   * SQL Count Practice Exercise, pharmacy_sales
+SELECT COUNT (*) FROM pharmacy_sales;
+   * SQL SUM Practice Exercise
+SELECT COUNT(product_id), SUM(total_sales) FROM pharmacy_sales WHERE manufacturer = 'Pfizer';
+   * SQL AVG Practice Exercise
+SELECT AVG (open) FROM stock_prices where ticker = 'GOOG';
+   * SQL MIN Practice Exercise
+SELECT MIN(open) FROM stock_prices WHERE ticker='MSFT';
+   * SQL MAX Practice Exercise
+SELECT MAX(open) FROM stock_prices WHERE ticker='NFLX';
+12. Lección 203 - SQL GROUP BY
+   * GROUP BY Practice Exercise #1
+SELECT ticker, MIN(open) FROM stock_prices GROUP BY ticker ORDER BY min DESC;SELECT * FROM stock_prices
+   * GROUP BY Practice Exercise #2
+SELECT skill, COUNT(candidate_id) FROM candidates GROUP BY skill ORDER BY count DESC;
+13. Lección 204 - SQL HAVING
+   * SQL HAVING Practice Exercise #1
+SELECT ticker, MIN(open) FROM stock_prices GROUP BY ticker HAVING MIN(open) > 100;
+   * SQL HAVING Practice Exercise #2
+SELECT candidate_id FROM candidates GROUP BY candidate_id HAVING COUNT(candidate_id) > 2;
+14. Lección 205 - SQL Distinct
+   * 
 20. Lección 211 - SQL JOINS
     * SQL Selecte Practice Exercise
 SELECT * FROM trades 
