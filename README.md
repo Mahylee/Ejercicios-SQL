@@ -167,3 +167,137 @@ GROUP BY customers.customer_id;
 SELECT page_id
 FROM pages;
 23. Date Functions - 302
+    * SQL Tutorial Lesson: Top-Selling Artists
+SELECT
+  artist_name,
+  concert_revenue,
+  genre,
+  number_of_members,
+  concert_revenue / number_of_members AS revenue_per_member,
+  RANK() OVER (
+    PARTITION BY genre
+    ORDER BY concert_revenue / number_of_members DESC) AS ranked_concerts
+FROM concerts;
+   * Supercloud Customer
+SELECT 
+  customers.customer_id, 
+  COUNT(DISTINCT products.product_category) AS product_count
+FROM customer_contracts AS customers
+INNER JOIN products 
+  ON customers.product_id = products.product_id
+GROUP BY customers.customer_id;
+   * Swapped Food Delivery
+SELECT COUNT(order_id) AS total_orders 
+FROM orders;
+24. Window Function - 303
+   * Card Launch Success
+SELECT MAKE_DATE(issue_year, issue_month, 1)
+FROM monthly_cards_issued;
+25. SQL Ranking
+   * Top 5 Artists
+WITH top_10_cte AS (
+  SELECT 
+    artists.artist_name,
+    DENSE_RANK() OVER (
+      ORDER BY COUNT(songs.song_id) DESC) AS artist_rank
+  FROM artists
+  INNER JOIN songs
+    ON artists.artist_id = songs.artist_id
+  INNER JOIN global_song_rank AS ranking
+    ON songs.song_id = ranking.song_id
+  WHERE ranking.rank <= 10
+  GROUP BY artists.artist_name
+)
+
+SELECT artist_name, artist_rank
+FROM top_10_cte
+WHERE artist_rank <= 5;
+   * Histogram of Users and Purchases
+SELECT 
+  transaction_date, 
+  user_id, 
+  product_id, 
+  RANK() OVER (
+    PARTITION BY user_id 
+    ORDER BY transaction_date DESC) AS transaction_rank 
+  FROM user_transactions;
+   * Odd and Even Measurements
+SELECT 
+date(measurement_time) as measurement_day,
+measurement_value,
+DENSE_RANK() OVER(PARTITION BY date(measurement_time) ORDER BY measurement_time) AS RN
+FROM measurements)
+26. SQL LEAD & LAG - 304
+   * SQL Tutorial Lesson: Stock Performance
+SELECT *,LEAD(CLOSE) OVER( ORDER BY date),close - LEAD(CLOSE) OVER( ORDER BY date) ,LAG(CLOSE,3) OVER( ORDER BY date),close - LAG(CLOSE,3) OVER( ORDER BY date) AS DIFFERENCE FROM stock_prices where ticker = 'GOOG' ;
+   * Y-on-Y Growth Rate
+SELECT
+EXTRACT(YEAR FROM u1.transaction_date) AS year,
+u1.product_id,
+u1.spend AS curr_year_spend,
+u2.spend AS prev_year_spend,
+ROUND((u1.spend/u2.spend *100) - 100 , 2) AS yoy_rate
+FROM
+user_transactions u1
+LEFT JOIN user_transactions u2 ON EXTRACT(YEAR FROM u1.transaction_date)-1 = EXTRACT(YEAR FROM u2.transaction_date)
+      AND u1.product_id = u2.product_id
+ORDER BY 2,1;
+   * Y-on-Y Growth Rate
+SELECT 
+    EXTRACT(YEAR FROM transaction_date) AS year,
+    product_id,
+    spend AS curr_year_spend,
+    LAG(spend) OVER (PARTITION BY product_id ORDER BY transaction_date) AS prev_year_spend,
+    round(100 * (spend - LAG(spend) OVER (PARTITION BY product_id ORDER BY transaction_date)) / LAG(spend) OVER (PARTITION BY product_id ORDER BY transaction_date),2) AS yoy_rate
+FROM user_transactions;
+27. SQL Self-Joins - 305
+   * SQL Tutorial Lesson: SQL Joins
+SELECT
+  b1.genre,
+  b1.book_title AS current_book,
+  b2.book_title AS suggested_book
+FROM goodreads AS b1
+INNER JOIN goodreads AS b2
+  ON b1.genre = b2.genre
+WHERE b1.book_id != b2.book_id
+ORDER BY b1.book_title;
+28. SQL Union - 306
+   * Maximize Prime Item Inventory
+SELECT
+  item_type,
+  SUM(square_footage) AS total_sqft,
+  COUNT(*) AS item_count
+FROM inventory
+GROUP BY item_type;
+   * Page With No Likes
+SELECT page_id FROM pages
+except 
+SELECT page_id FROM page_likes;
+29. Write Clean SQL - 307
+30. Execution Order - 308
+31. SQL PIVOTING - 309
+32. String Functions - 310
+   * SQL LOWER Practice Exercise
+Assume you're given the customer table containing all customer details.
+The branch manager is looking for a male customer whose name ends with "son" and he's 20 years old.
+Write a SQL query which uses LOWER and LIKE to find this customer's details.
+SELECT *
+FROM customers
+WHERE LOWER(customer_name) LIKE '%son'
+  AND gender = 'Male'
+  AND age = 20;
+33. Instacart SQL Case - 311
+   * Instacart Exploration  Case Study Checkpoint #1
+  Explore the ic_products data. Here are some questions to investigate:
+  How many items are there?
+  How many different products are in the dataset?
+SELECT COUNT(*) AS total_items
+FROM (
+    SELECT * FROM ic_order_products_curr
+    UNION ALL
+    SELECT * FROM ic_order_products_prior
+) AS all_orders;
+SELECT COUNT(DISTINCT product_id) AS unique_products
+FROM ic_products;
+
+ 
