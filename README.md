@@ -4,6 +4,7 @@
 Ejercicios de DataLemur en SQL
 1. Lección 101 - SQL TUTORIAL INTRO
    * SQL Select Practice Exercise
+'''sql
 SELECT user_id, stars FROM reviews WHERE stars = 3;
    * Given the reviews table, write a query to retrieve all 3-star reviews using the SQL WHERE clause. Only display the user_id and stars columns.
 2. Lección 102 - SQL SELECT
