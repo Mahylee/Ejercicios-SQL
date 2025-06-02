@@ -1,4 +1,4 @@
-# Ejercicios-SQL
+<span style="color:red">Ejercicios-SQL<\span>
 Ejercicios de DataLemur en SQL
 1. Lección 101 - SQL TUTORIAL INTRO
    * SQL Select Practice Exercise
