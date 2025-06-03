@@ -1,7 +1,10 @@
-# Ejercicios-SQL
+
+<span style="color:red">Ejercicios-SQL</span>
+
 Ejercicios de DataLemur en SQL
 1. Lección 101 - SQL TUTORIAL INTRO
    * SQL Select Practice Exercise
+'''sql
 SELECT user_id, stars FROM reviews WHERE stars = 3;
    * Given the reviews table, write a query to retrieve all 3-star reviews using the SQL WHERE clause. Only display the user_id and stars columns.
 2. Lección 102 - SQL SELECT
@@ -332,8 +335,8 @@ SELECT name,length(name)
 FROM world
 WHERE length(name)=5 and region='Europe'
 RESULT: Italy 5
-        Malta 5
-        Spain 5
+	Malta 5
+	Spain 5
   5. Here are the first few rows of the world table
 SELECT name, area*2 FROM world WHERE population =64000
 RESULT: Andorra 936
