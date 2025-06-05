@@ -1,9 +1,5 @@
 # 📘 Ejercicios SQL – DataLemur
 
-Este archivo contiene ejercicios organizados por lecciones del sitio DataLemur para practicar SQL.
-
----
-
 ## 🎓 Lección 101 - SQL TUTORIAL INTRO
 
 **SQL Select Practice Exercise**
@@ -13,9 +9,6 @@ SELECT user_id, stars
 FROM reviews 
 WHERE stars = 3;
 ```
-> Recupera todas las reseñas de 3 estrellas mostrando solo `user_id` y `stars`.
-
----
 
 ## 🎓 Lección 102 - SQL SELECT
 
@@ -24,9 +17,6 @@ WHERE stars = 3;
 ```sql
 SELECT * FROM Products;
 ```
-> Muestra todos los datos de todos los productos de Microsoft Azure.
-
----
 
 ## 🎓 Lección 103 - SQL WHERE
 
@@ -37,8 +27,6 @@ SELECT user_id, stars
 FROM reviews 
 WHERE stars = 3;
 ```
-
----
 
 ## 🎓 Lección 104 - SQL AND, OR, NOT
 
@@ -53,7 +41,6 @@ WHERE stars >= 4
   AND NOT user_id = 142;
 ```
 
----
 
 ## 🎓 Lección 105 - SQL BETWEEN
 
@@ -64,8 +51,6 @@ WHERE manufacturer IN ('Biogen', 'AbbVie', 'Eli Lilly')
   AND units_sold BETWEEN 100000 AND 105000;
 ```
 
----
-
 ## 🎓 Lección 106 - SQL IN
 
 ```sql
@@ -75,7 +60,6 @@ WHERE manufacturer IN ('Roche', 'Bayer', 'AstraZeneca')
   AND units_sold NOT BETWEEN 55000 AND 550000;
 ```
 
----
 
 ## 🎓 Lección 107 - SQL LIKE
 
@@ -84,8 +68,6 @@ SELECT *
 FROM customers 
 WHERE customer_name LIKE 'F%ck';
 ```
-
----
 
 ## 🎓 Lección 108 - SQL FILTERING REVIEW
 
@@ -98,7 +80,6 @@ WHERE age BETWEEN 18 AND 22
   AND (customer_name LIKE 'A%' OR customer_name LIKE 'B%');
 ```
 
----
 
 ## 🎓 Lección 109 - SQL ORDER BY
 
@@ -108,8 +89,6 @@ FROM pharmacy_sales
 ORDER BY total_profit DESC 
 LIMIT 3;
 ```
-
----
 
 ## 🎓 Lección 202 - SUM, AVG, COUNT
 
@@ -121,16 +100,12 @@ SELECT MIN(open) FROM stock_prices WHERE ticker='MSFT';
 SELECT MAX(open) FROM stock_prices WHERE ticker='NFLX';
 ```
 
----
-
 ## 🎓 Lección 203 - SQL GROUP BY
 
 ```sql
 SELECT ticker, MIN(open) FROM stock_prices GROUP BY ticker ORDER BY min DESC;
 SELECT skill, COUNT(candidate_id) FROM candidates GROUP BY skill ORDER BY count DESC;
 ```
-
----
 
 ## 🎓 Lección 204 - SQL HAVING
 
@@ -139,15 +114,12 @@ SELECT ticker, MIN(open) FROM stock_prices GROUP BY ticker HAVING MIN(open) > 10
 SELECT candidate_id FROM candidates GROUP BY candidate_id HAVING COUNT(candidate_id) > 2;
 ```
 
----
-
 ## 🎓 Lección 205 - SQL DISTINCT
 
 ```sql
 SELECT category, COUNT(DISTINCT product) FROM product_spend GROUP BY category;
 ```
 
----
 
 ## 🎓 Lección 206 - SQL ARITHMETIC
 
@@ -159,7 +131,6 @@ WHERE (close - open)/open > 0.10 OR (close - open)/open < -0.10
 GROUP BY ticker ORDER BY count DESC;
 ```
 
----
 
 ## 🎓 Lección 207 - SQL MATH FUNCTIONS
 
@@ -170,15 +141,11 @@ WHERE manufacturer = 'Merck'
 ORDER BY unit_cost;
 ```
 
----
-
 ## 🎓 Lección 209 - SQL NULL
 
 ```sql
 SELECT part, assembly_step FROM parts_assembly WHERE finish_date IS NULL;
 ```
-
----
 
 ## 🎓 Lección 210 - SQL CASE
 
@@ -198,8 +165,6 @@ SELECT
 FROM viewership;
 ```
 
----
-
 ## 🎓 Lección 211 - SQL JOINS
 
 ```sql
@@ -216,8 +181,6 @@ LIMIT 3;
 SELECT page_id FROM pages;
 ```
 
----
-
 ## 🎓 Lección 302 - DATE FUNCTIONS
 
 ```sql
@@ -230,8 +193,6 @@ HAVING COUNT(post_id) > 1;
 SELECT * FROM emails INNER JOIN texts ON emails.email_id = texts.email_id;
 ```
 
----
-
 ## 🎓 Lección 303 - WINDOW FUNCTIONS
 
 ```sql
@@ -241,8 +202,6 @@ SELECT transaction_date, user_id, product_id,
   RANK() OVER (PARTITION BY user_id ORDER BY transaction_date DESC) AS transaction_rank
 FROM user_transactions;
 ```
-
----
 
 ## 🎓 Lección 304 - SQL LEAD & LAG
 
@@ -265,8 +224,6 @@ LEFT JOIN user_transactions u2
 ORDER BY 2,1;
 ```
 
----
-
 ## 🎓 Lección 305 - SQL SELF-JOINS
 
 ```sql
@@ -276,8 +233,6 @@ INNER JOIN goodreads AS b2 ON b1.genre = b2.genre
 WHERE b1.book_id != b2.book_id 
 ORDER BY b1.book_title;
 ```
-
----
 
 ## 🎓 Lección 306 - SQL UNION
 
@@ -290,7 +245,6 @@ EXCEPT
 SELECT page_id FROM page_likes;
 ```
 
----
 
 ## 🎓 Lección 310 - STRING FUNCTIONS
 
@@ -300,8 +254,6 @@ WHERE LOWER(customer_name) LIKE '%son'
   AND gender = 'Male' 
   AND age = 20;
 ```
-
----
 
 ## 🎓 Lección 311 - INSTACART SQL CASE
 
