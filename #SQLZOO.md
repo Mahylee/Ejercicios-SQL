@@ -976,6 +976,7 @@ AND a.name != 'Art Garfunkel';
 ```
 # More JOIN Quiz ####
 - **1. More JOIN Quiz **
+```
 SELECT JOIN(name FROM actor, movie
        ON actor.id:director WHERE gross < budget)
  GROUP BY name
@@ -991,7 +992,9 @@ SELECT name
 SELECT name
   FROM director INNER JOIN movie ON movie.id = director.id
  WHERE gross < budget
+ ```
 - **2. More JOIN Quiz **
+```
 SELECT JOIN(name FROM actor, movie
        ON actor.id:director WHERE gross < budget)
  GROUP BY name
@@ -1007,7 +1010,9 @@ SELECT name
 SELECT name
   FROM director INNER JOIN movie ON movie.id = director.id
  WHERE gross < budget
+ ```
 - **3. More JOIN Quiz **
+```
 SELECT name, COUNT(movieid)
   FROM actor JOIN casting ON actorid=actor.id
  WHERE name IN 'John %'
@@ -1029,12 +1034,16 @@ SELECT name, COUNT(movieid)
   FROM casting JOIN actor
  WHERE name LIKE 'John %'
  GROUP BY name ORDER BY COUNT(movieid) DESC
+ ```
 - **4. More JOIN Quiz **
+```
  SELECT title 
    FROM movie JOIN casting ON (movieid=movie.id)
               JOIN actor   ON (actorid=actor.id)
   WHERE name='Paul Hogan' AND ord = 1
+  ```
 - **5. More JOIN Quiz **
+```
 SELECT name
   FROM movie JOIN casting
    AND actor ON movie.id = movieid
@@ -1058,7 +1067,9 @@ SELECT name
   FROM movie JOIN casting ON movie.id = actorid
   JOIN actor ON actor.id = movieid
  WHERE director = 351
+ ```
 - **6. More JOIN Quiz **
+```
 link the director column in movies with the id column in actor
 join casting to itself
 link the actor column in movies with the primary key in actor
@@ -1069,11 +1080,13 @@ link the director column in movies with the primary key in actor
 connect the primary keys of movie and casting via the actor table
 link the movie column in actor with the director column in actor
 connect movie and actor via the casting table
+```
 - **7. More JOIN Quiz **
+```
  SELECT title, yr 
    FROM movie, casting, actor 
   WHERE name='Robert De Niro' AND movieid=movie.id AND actorid=actor.id AND ord = 3
-
+```
 # Using NULL ####
 - **1. Using NULL **
 ```
@@ -1155,37 +1168,48 @@ FROM teacher
 ```
 # Using NULL Quiz ####
 - **1. Using NULL Quiz **
+```
 SELECT teacher.name, dept.name FROM teacher JOIN dept ON (dept = id)
  SELECT teacher.name, dept.name FROM teacher, dept INNER JOIN ON (teacher.dept = dept.id)
  SELECT teacher.name, dept.name FROM teacher, dept JOIN WHERE(teacher.dept = dept.id)
  SELECT teacher.name, dept.name FROM teacher OUTER JOIN dept ON dept.id
  SELECT teacher.name, dept.name FROM teacher LEFT OUTER JOIN dept ON (teacher.dept = dept.id)
+ ```
 - **2. Using NULL Quiz **
+```
  SELECT dept.name FROM teacher JOIN dept ON (dept.id = (SELECT dept FROM teacher WHERE name = 'Cutflower'))
  SELECT dept.name FROM teacher JOIN dept ON (dept.id = teacher.dept) WHERE dept.id = (SELECT dept FROM teacher HAVING name = 'Cutflower')
  SELECT dept.name FROM teacher JOIN dept ON (dept.id = teacher.dept) WHERE teacher.name = 'Cutflower'
  SELECT dept.name FROM teacher JOIN dept WHERE dept.id = (SELECT dept FROM teacher WHERE name = 'Cutflower')
  SELECT name FROM teacher JOIN dept ON (id = dept) WHERE id = (SELECT dept FROM teacher WHERE name = 'Cutflower')
+ ```
 - **3. Using NULL Quiz **
+```
  SELECT dept.name, COUNT(*) FROM teacher LEFT JOIN dept ON dept.id = teacher.dept
  SELECT dept.name, COUNT(teacher.name) FROM teacher, dept JOIN ON dept.id = teacher.dept GROUP BY dept.name
  SELECT dept.name, COUNT(teacher.name) FROM teacher JOIN dept ON dept.id = teacher.dept GROUP BY dept.name
  SELECT dept.name, COUNT(teacher.name) FROM teacher LEFT OUTER JOIN dept ON dept.id = teacher.dept GROUP BY dept.name
  SELECT dept.name, COUNT(teacher.name) FROM teacher RIGHT JOIN dept ON dept.id = teacher.dept GROUP BY dept.name
+ ```
 - **4. Using NULL Quiz **
+```
 display 0 in result column for all teachers
 display 0 in result column for all teachers without department
 do nothing - the statement is incorrect
 set dept value of all teachers to 0
 set dept value of all teachers without department to 0
+```
 - **5. Using NULL Quiz **
+```
 SELECT name,
        CASE WHEN phone = 2752 THEN 'two'
             WHEN phone = 2753 THEN 'three'
             WHEN phone = 2754 THEN 'four'
             END AS digit
   FROM teacher
+  ```
 - **6. Using NULL Quiz **
+```
  SELECT name, 
       CASE 
        WHEN dept 
@@ -1194,6 +1218,7 @@ SELECT name,
        ELSE 'Other' 
       END 
   FROM teacher
+  ```
 # self JOIN ####
 - **1. self JOIN **
 ```
@@ -1276,6 +1301,7 @@ AND a.company='LRT'
 ```
 # self JOIN Quiz ####
 - **1. self JOIN Quiz  **
+```
 SELECT DISTINCT a.name, b.name
   FROM stops a JOIN route z IN a.id=z.stop
   JOIN route y ON y.num = z.num
@@ -1300,7 +1326,9 @@ SELECT DISTINCT a.name, b.name
   JOIN route y ON y.num = z.num
   JOIN stops b ON y.stop=b.id
  WHERE y.name='Craiglockhart' AND z.name ='Haymarket'
+ ```
 - **2. self JOIN Quiz  **
+```
 SELECT S2.id, S2.name, R2.company, R2.num
   FROM stops S1, stops S2, route R1, route R2
  WHERE S1.name='Haymarket' AND S1.id=R1.stop
@@ -1326,7 +1354,9 @@ SELECT S2.id, S2.name, R2.company, R2.num
  WHERE S1.name='Haymarket' AND S1.id=R1.stop
    AND R1.company=R2.company AND R1.num=R2.num
    AND R2.stop=S2.id AND R2.num='2A'
+   ```
 - **3. self JOIN Quiz  **
+```
 SELECT a.company, a.num, stopa.name, stopb.name
   FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
   JOIN stops stopa ON (a.stop=stopa.id)
@@ -1351,6 +1381,6 @@ SELECT a.company, a.num, stopa.name, stopb.name
   JOIN stops stopa ON (a.stop=stopa.id)
   JOIN stops stopb ON (b.stop=stopb.id)
  WHERE stopz.name='Tollcross'
-
+```
 
 
